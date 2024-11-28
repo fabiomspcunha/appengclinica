@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Equipamento</title>
+</head>
+<body>
+    <h1>Editar Equipamento</h1>
+    <form action="{{ url_for('main.editar', id=equipamento.id) }}" method="POST">
+        <label for="nome">Nome do Equipamento:</label>
+        <input type="text" id="nome" name="nome" value="{{ equipamento.nome }}" required><br><br>
+
+        <label for="modelo">Modelo:</label>
+        <input type="text" id="modelo" name="modelo" value="{{ equipamento.modelo }}" required><br><br>
+
+        <label for="fabricante">Fabricante:</label>
+        <input type="text" id="fabricante" name="fabricante" value="{{ equipamento.fabricante }}" required><br><br>
+
+        <label for="num_serie">Número de Série:</label>
+        <input type="text" id="num_serie" name="num_serie" value="{{ equipamento.num_serie }}" required><br><br>
+
+        <label for="localizacao">Localização:</label>
+        <input type="text" id="localizacao" name="localizacao" value="{{ equipamento.localizacao }}" required><br><br>
+
+        <button type="submit">Atualizar</button>
+    </form>
+</body>
+</html>
