@@ -1,137 +1,158 @@
 /* app/static/css/style.css */
 
-/* Remover margens e padding padrão */
-nav ul {
-    list-style-type: none;
+/* Reset básico */
+body, h1, h2, ul, nav, form {
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: left;
-}
-
-nav li {
-    margin-right: 10px;
-}
-
-nav a {
-    display: inline-block;
-    padding: 8px 16px;
-    text-decoration: none;
-    background-color: white;
-    color: #0056b3;
-    border-radius: 4px;
-    font-size: 14px;
-    transition: background-color 0.3s ease;
-    outline: none; /* Remove outline que aparece ao focar */
-    box-shadow: none; /* Remove qualquer sombra de borda */
-}
-
-nav a:hover {
-    background-color: white;
-}
-
-
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 50px;
-    background-color: rgb(53, 52, 54);
-}
-
-h1 {
-    font-family: 'Arial';
-    text-align: center;
-    margin-top: 20px;
-    color: rgb(0, 228, 255);
-}
-
-/* Margem a esquerda */
-
-h2 {
-    color: rgb(0, 228, 255);
-    text-align: center;
-}
-
-
-form {
-    max-width: 400px; /* Limita a largura máxima do formulário */
-    margin: 50px auto; /* Centraliza o formulário na página */
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-/* Estiliza os campos de input */
-form input[type="text"] {
-    width: 100%; /* Garante que o campo ocupe toda a largura disponível */
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box; /* Garante que o padding não afete o tamanho total do campo */
-}
-
-/* Estiliza o botão */
-form button {
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-form button:hover {
-    background-color: #0056b3;
-}
-
-/* Estiliza os rótulos (labels) */
-form label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-}
-
-input, button {
-    margin: 10px 0;
-    padding: 10px;
-    font-size: 14px;
-    width: 100%;
     box-sizing: border-box;
 }
 
-button {
-    background-color: rgb(25, 120, 131);
+/* Corpo da página */
+body {
+    font-family: 'Roboto', Arial, sans-serif;
+    line-height: 1.6;
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+    color: #333;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+/* Cabeçalhos */
+h1, h2 {
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 2.5em;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+h2 {
+    font-size: 1.8em;
+    font-weight: 300;
+}
+
+/* Navegação */
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    background-color: #34495e;
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+nav li {
+    margin: 0 10px;
+}
+
+nav a {
+    text-decoration: none;
+    padding: 10px 20px;
+    color: #ecf0f1;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+nav a:hover {
+    background-color: #2ecc71;
+    color: white;
+    transform: scale(1.05);
+}
+
+/* Formulário */
+form {
+    max-width: 400px;
+    background: white;
+    padding: 60px;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+form input[type="text"], form button {
+    width: 100%;
+    margin-bottom: 1px;
+    padding: 15px;
+    border-radius: 5px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    transition: all 0.3s ease;
+}
+
+form input[type="text"]:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+    outline: none;
+}
+
+form button {
+    background: linear-gradient(135deg, #1abc9c, #16a085);
     color: white;
     border: none;
     cursor: pointer;
+    font-weight: bold;
 }
 
-button:hover {
-    background-color: #45a049;
+form button:hover {
+    background: #16a085;
+    transform: translateY(-2px);
 }
 
+/* Rótulos */
+form label {
+    font-size: 14px;
+    color: #7f8c8d;
+    margin-bottom: 10px;
+    display: block;
+}
+
+/* Lista */
 ul {
     list-style: none;
     padding: 0;
+    margin-top: 30px;
+    width: 100%;
 }
 
 ul li {
-    background-color: #fff;
+    background-color: white;
     margin: 10px 0;
-    padding: 10px;
+    padding: 15px;
     border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    color: #2c3e50;
 }
 
+/* Links */
 a {
-    color: #007BFF;
+    color: #3498db;
     text-decoration: none;
-    border: none;
+    transition: color 0.3s ease;
 }
 
 a:hover {
-    text-decoration: underline;
+    color: #2980b9;
+}
+
+/* Animação */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

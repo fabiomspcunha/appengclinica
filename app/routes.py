@@ -14,6 +14,10 @@ def inventario():
     equipamentos = Equipamento.query.all()
     return render_template('inventario.html', equipamentos=equipamentos)
 
+@main.route('/os')
+def os():
+    return render_template('os.html')
+
 @main.route('/adicionar', methods=['POST'])
 def adicionar():
     nome = request.form.get('nome')
