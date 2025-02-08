@@ -12,6 +12,62 @@
             <ul>
                 <li><a href="{{ url_for('main.index') }}">Início</a></li>
                 <li><a href="{{ url_for('main.inventario') }}">Inventário</a></li>
+                <li><a href="{{ url_for('main.os') }}">Inventário</a></li>
             </ul>
         </nav>
     </header>
+    <div class="container mt-5">
+        <h2 class="mb-4">Ordens de Serviço</h2>
+        
+        <form action="{{ url_for('main.add_ordem') }}" method="post">
+            <label for="equipamento">Equipamento:</label>
+            <select name="equipamento" required>
+                <option value="">Selecione um equipamento</option>
+                {% for equipamento in equipamentos %}
+                    <option value="{{ equipamento.id }}">{{ equipamento.nome }} ({{ equipamento.modelo }})</option>
+                {% endfor %}
+            </select>
+        
+            <label for="descricao">Descrição do Problema:</label>
+            <textarea name="descricao" required></textarea>
+        
+            <button type="submit">Adicionar Ordem</button>
+        </form>
+        
+        
+        <h3>Lista de Ordens de Serviço</h3>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Equipamento</th>
+                    <th>Descrição</th>
+                    <th>Status</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for ordem in ordens %}
+                <tr>
+                    <td>{{ ordem.id }}</td>
+                    <td>{{ ordem.equipamento }}</td>
+                    <td>{{ ordem.descricao }}</td>
+                    <td>{{ ordem.status }}</td>
+                    <td>
+                        <form action="/update/{{ ordem.id }}" method="post" class="d-inline">
+                            <select name="status" class="form-select d-inline w-auto">
+                                <option value="Aberto" {% if ordem.status == 'Aberto' %}selected{% endif %}>Aberto</option>
+                                <option value="Em andamento" {% if ordem.status == 'Em andamento' %}selected{% endif %}>Em andamento</option>
+                                <option value="Concluído" {% if ordem.status == 'Concluído' %}selected{% endif %}>Concluído</option>
+                            </select>
+                            <button type="submit" class="btn btn-warning btn-sm">Atualizar</button>
+                        </form>
+                        <a href="/delete/{{ ordem.id }}" class="btn btn-danger btn-sm">Excluir</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

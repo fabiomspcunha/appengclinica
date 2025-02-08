@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for
-from .models import Equipamento, Manutencao
+from .models import Equipamento, Manutencao, ordens_servico
 from . import db
 
 # Define um blueprint para as rotas principais
@@ -16,7 +16,9 @@ def inventario():
 
 @main.route('/os')
 def os():
-    return render_template('os.html')
+    equipamentos = Equipamento.query.all()  # Pega os equipamentos do inventário
+    return render_template('os.html', equipamentos=equipamentos, ordens=ordens_servico)
+
 
 @main.route('/adicionar', methods=['POST'])
 def adicionar():
@@ -64,3 +66,40 @@ def deletar(id):
     db.session.commit()
     return redirect(url_for('main.index'))
 
+@main.route('/add_os', methods=['POST'])
+def add_ordem():
+    equipamento_id = request.form['equipamento']
+    descricao = request.form['descricao']
+
+    # Verifica se o equipamento existe no banco de dados
+    equipamento = Equipamento.query.get(equipamento_id)
+    
+    if not equipamento:
+        print("Erro: Equipamento não encontrado!")
+        return redirect(url_for('main.os_page'))  # Redireciona de volta à página de OS
+
+    status = "Aberto"
+    ordem = {
+        'id': len(ordens_servico) + 1,
+        'equipamento': equipamento.nome,  # Agora pegamos o nome do equipamento do BD
+        'descricao': descricao,
+        'status': status
+    }
+
+    ordens_servico.append(ordem)
+    return redirect(url_for('main.index'))
+
+
+@main.route('/update/<int:ordem_id>', methods=['POST'])
+def update_ordem(ordem_id):
+    for ordem in ordens_servico:
+        if ordem['id'] == ordem_id:
+            ordem['status'] = request.form['status']
+            break
+    return redirect(url_for('main.index'))
+
+@main.route('/delete/<int:ordem_id>')
+def delete_ordem(ordem_id):
+    global ordens_servico
+    ordens_servico = [ordem for ordem in ordens_servico if ordem['id'] != ordem_id]
+    return redirect(url_for('main.index'))

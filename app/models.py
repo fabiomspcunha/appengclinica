@@ -1,5 +1,7 @@
 from . import db
 
+ordens_servico = []
+
 # Tabela de Equipamentos
 class Equipamento(db.Model):
     __tablename__ = 'equipamentos'
