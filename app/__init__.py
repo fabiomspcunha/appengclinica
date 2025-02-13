@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 
 # Inicializa o banco de dados
 db = SQLAlchemy()
@@ -14,6 +15,8 @@ def create_app():
    
    # Inicializa o banco de dados com a aplicação
     db.init_app(app)
+
+    migrate = Migrate(app,db)
 
     with app.app_context():
         db.create_all()

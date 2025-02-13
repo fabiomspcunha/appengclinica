@@ -1,4 +1,5 @@
 from . import db
+from datetime import datetime
 
 ordens_servico = []
 
@@ -12,6 +13,7 @@ class Equipamento(db.Model):
     fabricante = db.Column(db.String(50), nullable=False)
     num_serie = db.Column(db.String(50), unique=True, nullable=False)
     localizacao = db.Column(db.String(50), nullable=False)
+    data_cadastro = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 
     manutencoes = db.relationship('Manutencao', backref='equipamento', lazy=True)
 

@@ -43,6 +43,7 @@
     <ul>
         {% for equipamento in equipamentos %}
             <li>{{ equipamento.nome }} ({{ equipamento.modelo }}) - Localização: {{ equipamento.localizacao }}
+                <br>Cadastro em: {{ (equipamento.data_cadastro - timedelta(hours=3)).strftime('%d/%m/%Y %H:%M') }}
                 <a href="{{ url_for('main.editar', id=equipamento.id) }}">Editar</a> | 
                 <a href="{{ url_for('main.deletar', id=equipamento.id) }}">Deletar</a>
             </li>
@@ -50,3 +51,6 @@
     </ul>
 </body>
 </html>
+
+
+

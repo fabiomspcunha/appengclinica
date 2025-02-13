@@ -1,6 +1,8 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from .models import Equipamento, Manutencao, ordens_servico
 from . import db
+from datetime import datetime
+from datetime import timedelta
 
 # Define um blueprint para as rotas principais
 main = Blueprint('main', __name__)
@@ -12,7 +14,7 @@ def index():
 @main.route('/inventario')
 def inventario():
     equipamentos = Equipamento.query.all()
-    return render_template('inventario.html', equipamentos=equipamentos)
+    return render_template('inventario.html', equipamentos=equipamentos, timedelta=timedelta)
 
 @main.route('/os')
 def os():
@@ -41,6 +43,11 @@ def adicionar():
     db.session.commit()
     
     return redirect(url_for('main.inventario'))
+
+@main.route('/equipamentos')
+def listar_equipamentos():
+    equipamentos = Equipamento.query.all()
+    return render_template('equipamentos.html', equipamentos=equipamentos, timedelta=timedelta)
 
 @main.route('/editar/<int:id>', methods=['GET', 'POST'])
 def editar(id):
