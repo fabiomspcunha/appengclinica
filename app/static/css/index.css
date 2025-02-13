@@ -1,161 +1,87 @@
-/* index.css */
-
-/* Reset básico */
-body, h1, h2, ul, nav, form, header {
+/* Estilos gerais */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
-/* Corpo da página */
-body {
-    font-family: 'Roboto', Arial, sans-serif;
-    line-height: 1.6;
-    background: linear-gradient(135deg, #2c3e50, #34495e);
-    color: #ecf0f1;
+.container {
+    width: 80%;
+    margin: 40px auto;
+    background: #ffffff;
     padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    min-height: 100vh;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Cabeçalho */
+h1, h2 {
+    color: #333;
+    text-align: center;
+}
+
+/* Estilização do cabeçalho e navegação */
 header {
-    width: 100%;
-    background: #2c3e50;
+    background: #007bff;
     padding: 15px 0;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+    text-align: center;
 }
 
-/* Navegação */
 nav ul {
     list-style: none;
-    display: flex;
-    justify-content: center;
     padding: 0;
     margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
 }
 
 nav ul li {
-    margin: 0 15px;
+    display: inline;
 }
 
 nav ul li a {
-    color: #1abc9c;
     text-decoration: none;
-    font-size: 16px;
+    color: white;
+    font-weight: bold;
     padding: 10px 15px;
-    border-radius: 5px;
-    transition: all 0.3s ease;
+    transition: 0.3s;
 }
 
 nav ul li a:hover {
-    background-color: #16a085;
-    color: #ecf0f1;
-    transform: scale(1.05);
+    background: #0056b3;
+    border-radius: 5px;
 }
 
-/* Cabeçalhos */
-h1, h2 {
-    color: #ecf0f1;
+/* Seção de conteúdo */
+.content {
     text-align: center;
-    margin-bottom: 20px;
+    margin: 50px auto;
+    max-width: 800px;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-h1 {
-    font-size: 2.5em;
-    font-weight: bold;
-    margin-top: 20px;
+p {
+    font-size: 18px;
+    color: #555;
 }
 
-h2 {
-    font-size: 1.8em;
-    font-weight: 300;
-}
-
-/* Formulário */
-form {
-    max-width: 400px;
-    margin: 40px auto;
-    padding: 30px;
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    animation: fadeIn 0.8s ease-in-out;
-}
-
-input, button {
-    margin: 10px 0;
-    padding: 12px 15px;
-    font-size: 16px;
-    width: 100%;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    transition: all 0.3s ease;
-}
-
-input:focus {
-    border-color: #1abc9c;
-    box-shadow: 0 0 5px rgba(26, 188, 156, 0.5);
-    outline: none;
-}
-
-button {
-    background: linear-gradient(135deg, #1abc9c, #16a085);
+/* Botão de ação */
+.btn-primary {
+    display: inline-block;
+    background: #28a745;
     color: white;
+    padding: 10px 20px;
+    font-size: 18px;
     border: none;
-    cursor: pointer;
-    font-weight: bold;
-    transition: transform 0.2s;
-}
-
-button:hover {
-    background-color: #16a085;
-    transform: translateY(-2px);
-}
-
-/* Lista */
-ul {
-    list-style: none;
-    padding: 0;
-    margin-top: 20px;
-}
-
-ul li {
-    background-color: #ffffff;
-    margin: 10px 0;
-    padding: 15px;
     border-radius: 5px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    font-size: 16px;
-    color: #2c3e50;
-}
-
-/* Links */
-a {
-    color: #1abc9c;
     text-decoration: none;
-    transition: color 0.3s ease;
+    transition: 0.3s;
 }
 
-a:hover {
-    color: #16a085;
-    text-decoration: underline;
-}
-
-/* Animação */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.btn-primary:hover {
+    background: #218838;
 }

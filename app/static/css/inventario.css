@@ -1,158 +1,133 @@
-/* app/static/css/style.css */
-
-/* Reset básico */
-body, h1, h2, ul, nav, form {
+/* Estilos gerais */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
-/* Corpo da página */
-body {
-    font-family: 'Roboto', Arial, sans-serif;
-    line-height: 1.6;
-    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+.container {
+    width: 80%;
+    margin: 40px auto;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2, h3 {
     color: #333;
-    padding: 50px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-}
-
-/* Cabeçalhos */
-h1, h2 {
-    color: #2c3e50;
     text-align: center;
-    margin-bottom: 20px;
 }
 
-h1 {
-    font-size: 2.5em;
-    font-weight: bold;
-    text-transform: uppercase;
+/* Estilização do cabeçalho e navegação */
+header {
+    background: #007bff;
+    padding: 15px 0;
+    text-align: center;
 }
 
-h2 {
-    font-size: 1.8em;
-    font-weight: 300;
-}
-
-/* Navegação */
 nav ul {
     list-style: none;
+    padding: 0;
+    margin: 0;
     display: flex;
     justify-content: center;
-    background-color: #34495e;
-    padding: 10px 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    gap: 20px;
 }
 
-nav li {
-    margin: 0 10px;
+nav ul li {
+    display: inline;
 }
 
-nav a {
+nav ul li a {
     text-decoration: none;
-    padding: 10px 20px;
-    color: #ecf0f1;
-    border-radius: 5px;
-    font-size: 14px;
-    transition: all 0.3s ease;
+    color: white;
+    font-weight: bold;
+    padding: 10px 15px;
+    transition: 0.3s;
 }
 
-nav a:hover {
-    background-color: #2ecc71;
-    color: white;
-    transform: scale(1.05);
+nav ul li a:hover {
+    background: #0056b3;
+    border-radius: 5px;
 }
 
 /* Formulário */
 form {
-    max-width: 400px;
-    background: white;
-    padding: 60px;
-    border-radius: 20px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    animation: fadeIn 0.8s ease-in-out;
-}
-
-form input[type="text"], form button {
-    width: 100%;
-    margin-bottom: 1px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     padding: 15px;
-    border-radius: 5px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    transition: all 0.3s ease;
 }
 
-form input[type="text"]:focus {
-    border-color: #3498db;
-    box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
-    outline: none;
-}
-
-form button {
-    background: linear-gradient(135deg, #1abc9c, #16a085);
-    color: white;
-    border: none;
-    cursor: pointer;
+label {
     font-weight: bold;
 }
 
-form button:hover {
-    background: #16a085;
-    transform: translateY(-2px);
-}
-
-/* Rótulos */
-form label {
-    font-size: 14px;
-    color: #7f8c8d;
-    margin-bottom: 10px;
-    display: block;
-}
-
-/* Lista */
-ul {
-    list-style: none;
-    padding: 0;
-    margin-top: 30px;
-    width: 100%;
-}
-
-ul li {
-    background-color: white;
-    margin: 10px 0;
-    padding: 15px;
+select, textarea, button {
+    padding: 10px;
+    border: 1px solid #ccc;
     border-radius: 5px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+button {
+    background: #28a745;
+    color: white;
     font-size: 16px;
-    color: #2c3e50;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
-/* Links */
-a {
-    color: #3498db;
-    text-decoration: none;
-    transition: color 0.3s ease;
+button:hover {
+    background: #218838;
 }
 
-a:hover {
-    color: #2980b9;
+/* Tabela */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
 }
 
-/* Animação */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.table th, .table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+.table th {
+    background: #007bff;
+    color: white;
+}
+
+.table tr:nth-child(even) {
+    background: #f2f2f2;
+}
+
+/* Botões de ação */
+.btn-warning {
+    background: #ffc107;
+    border: none;
+    padding: 5px 10px;
+    color: #333;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-warning:hover {
+    background: #e0a800;
+}
+
+.btn-danger {
+    background: #dc3545;
+    border: none;
+    padding: 5px 10px;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-danger:hover {
+    background: #c82333;
 }

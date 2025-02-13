@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestão de Manutenção - Engenharia Clínica</title>
 <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/inventario.css') }}"> -->
-<link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/inventario.css') }}">
 </head>
 <body>
     <header>
@@ -13,11 +13,11 @@
             <ul>
                 <li><a href="{{ url_for('main.index') }}">Início</a></li>
                 <li><a href="{{ url_for('main.inventario') }}">Inventário</a></li>
+                <li><a href="{{ url_for('main.os') }}">Ordem de Serviço</a></li>
             </ul>
         </nav>
     </header>
     <br>
-    <h1>Inventário</h1>
 
     <h2>Cadastro de Equipamentos</h2>
     <form action="/adicionar" method="POST">

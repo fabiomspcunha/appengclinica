@@ -40,7 +40,7 @@ def adicionar():
     db.session.add(novo_equipamento)
     db.session.commit()
     
-    return redirect(url_for('main.index'))
+    return redirect(url_for('main.inventario'))
 
 @main.route('/editar/<int:id>', methods=['GET', 'POST'])
 def editar(id):
@@ -54,7 +54,7 @@ def editar(id):
         equipamento.localizacao = request.form['localizacao']
 
         db.session.commit()
-        return redirect(url_for('main.index'))
+        return redirect(url_for('main.inventario'))
 
     return render_template('editar.html', equipamento=equipamento)
 
@@ -64,7 +64,7 @@ def deletar(id):
     equipamento = Equipamento.query.get_or_404(id)
     db.session.delete(equipamento)
     db.session.commit()
-    return redirect(url_for('main.index'))
+    return redirect(url_for('main.inventario'))
 
 @main.route('/add_os', methods=['POST'])
 def add_ordem():
