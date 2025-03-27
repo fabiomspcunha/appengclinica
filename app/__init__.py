@@ -1,6 +1,7 @@
-from flask import Flask
+from flask import Flask, flash, render_template, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from flask_sqlalchemy import SQLAlchemy
 
 # Inicializa o banco de dados
 db = SQLAlchemy()
@@ -29,3 +30,4 @@ def create_app():
     app.register_blueprint(main)
 
     return app
+

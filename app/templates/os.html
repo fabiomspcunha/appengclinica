@@ -4,70 +4,147 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestão de Manutenção - Engenharia Clínica</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/ordem_servico.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/os.css') }}">
 </head>
+
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="{{ url_for('main.index') }}">Início</a></li>
+<div class="app">
+	<header class="app-header">
+		<div class="app-header-logo">
+			<div class="logo">
+				<span class="logo-icon">
+					<img src="https://img.icons8.com/?size=100&id=40989&format=png&color=FFFFFF" />
+				</span>
+				<h1 class="logo-title">
+					<span>Gestão de</span>
+					<span>Manutenção</span>
+				</h1>
+			</div>
+		</div>
+		<div class="app-header-navigation">
+			<div class="tabs">
+				<li><a href="{{ url_for('main.index') }}">Início</a></li>
                 <li><a href="{{ url_for('main.inventario') }}">Inventário</a></li>
-                <li><a href="{{ url_for('main.os') }}">Inventário</a></li>
-            </ul>
-        </nav>
-    </header>
-    <div class="container mt-5">
-        <h2 class="mb-4">Ordens de Serviço</h2>
-        
-        <form action="{{ url_for('main.add_ordem') }}" method="post">
-            <label for="equipamento">Equipamento:</label>
-            <select name="equipamento" required>
-                <option value="">Selecione um equipamento</option>
-                {% for equipamento in equipamentos %}
-                    <option value="{{ equipamento.id }}">{{ equipamento.nome }} ({{ equipamento.modelo }})</option>
-                {% endfor %}
-            </select>
-        
-            <label for="descricao">Descrição do Problema:</label>
-            <textarea name="descricao" required></textarea>
-        
-            <button type="submit">Adicionar Ordem</button>
-        </form>
-        
-        
-        <h3>Lista de Ordens de Serviço</h3>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Equipamento</th>
-                    <th>Descrição</th>
-                    <th>Status</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for ordem in ordens %}
-                <tr>
-                    <td>{{ ordem.id }}</td>
-                    <td>{{ ordem.equipamento }}</td>
-                    <td>{{ ordem.descricao }}</td>
-                    <td>{{ ordem.status }}</td>
-                    <td>
-                        <form action="/update/{{ ordem.id }}" method="post" class="d-inline">
-                            <select name="status" class="form-select d-inline w-auto">
-                                <option value="Aberto" {% if ordem.status == 'Aberto' %}selected{% endif %}>Aberto</option>
-                                <option value="Em andamento" {% if ordem.status == 'Em andamento' %}selected{% endif %}>Em andamento</option>
-                                <option value="Concluído" {% if ordem.status == 'Concluído' %}selected{% endif %}>Concluído</option>
-                            </select>
-                            <button type="submit" class="btn btn-warning btn-sm">Atualizar</button>
-                        </form>
-                        <a href="/delete/{{ ordem.id }}" class="btn btn-danger btn-sm">Excluir</a>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
+                <li><a href="{{ url_for('main.os') }}">Ordens de Serviço</a></li>
+                <li><a href="{{ url_for('main.mostrar_preventiva') }}">Preventiva</a></li>
+			</div>
+		</div>
+		<div class="app-header-actions">
+			<button class="user-profile">
+				<span>Nome do Usuário</span>
+				<span>
+					<img src="https://assets.codepen.io/285131/almeria-avatar.jpeg" />
+				</span>
+			</button>
+			<div class="app-header-actions-buttons">
+				<button class="icon-button large">
+					<i class="ph-magnifying-glass"></i>
+				</button>
+				<button class="icon-button large">
+					<i class="ph-bell"></i>
+				</button>
+			</div>
+		</div>
+		<div class="app-header-mobile">
+			<button class="icon-button large">
+				<i class="ph-list"></i>
+			</button>
+		</div>
+
+	</header>
+	<div class="app-body">
+		<div class="app-body-navigation">
+			<nav class="navigation">
+				
+			
+		</div>
+		<div class="app-body-main-content">
+			<section class="service-section">
+				
+				<div class="tiles">
+
+					<div class="container mt-5">
+						<h2 class="mb-4">Ordens de Serviço</h2>
+						
+						<form action="{{ url_for('main.add_ordem') }}" method="post">
+							<label for="equipamento">Equipamento:</label>
+							<select name="equipamento" required>
+								<option value="">Selecione um equipamento</option>
+								{% for equipamento in equipamentos %}
+									<option value="{{ equipamento.id }}">{{ equipamento.nome }} ({{ equipamento.modelo }})</option>
+								{% endfor %}
+							</select>
+							
+						
+							<label for="descricao">Descrição do Problema:</label>
+							<textarea name="descricao" required></textarea><p></p>
+						    
+				
+							<label for="profissional">Profissional responsável:</label>
+							<textarea name="profissional" required></textarea><p></p>
+				
+							<label for="hora">Data e hora:</label>
+							<input type="datetime-local" value="2025-01-01 00:00" name="hora" min="2025-01-01 00:00" max="3025-00-00 00:00" required/><span class="validity"></span><p></p>
+				
+				
+							<button class= "add" type="submit">Adicionar Ordem</button>
+							
+						</form>
+					</div>
+				<div class="service-section-footer">
+				</div>
+				<div>
+		
+			</div>
+			<div>
+				<h3>Lista de Ordens de Serviço</h3>
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th>Nº da OS&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</th>
+							<th>Equipamento&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</th>
+							<th>Descrição&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</th>
+							<th>Profissional responsável&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</ths>
+							<th>Data e hora&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</th>
+							<th>Status&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</th>
+							<th>Ação</th>
+							
+					</thead>
+					<tbody>
+						{% for ordem in ordens %}
+						<tr>
+							<td>{{ ordem.id }}</td>
+							<td>{{ ordem.equipamento }}</td>
+							<td>{{ ordem.descricao }}</td>
+							<td>{{ ordem.profissional}}</td>
+							<td>{{ ordem.hora }}</td>
+							<td <td class="status {% if ordem.status == 'Aberto' %}aberto{% elif ordem.status == 'Em andamento' %}andamento{% elif ordem.status == 'Concluído' %}fechado{% endif %}">
+								{{ ordem.status }}</td>
+							
+							<td>
+								
+								<form action="/update/{{ ordem.id }}" method="post" class="d-inline">
+									<select name="status" class="form-selectd-inlinew-auto">
+										<option value="Aberto" data-val="aberto" {% if ordem.status == 'Aberto'%}selected{% endif %} data-val="aberto" >Aberto</option>
+										<option value="Em andamento" data-val="andamento" ordem.status.class="status andamento"{% if ordem.status == 'Em andamento' %}selected{% endif %} data-val="andamento">Em andamento</option>
+										<option value="Concluído" data-val="fechado" ordem.status.class="status fechado" {% if ordem.status == 'Concluído' %}selected{% endif %} data-val="fechado">Concluído</option>
+									</select>
+									<button type="submit" class="btn btn-warning btn-sm">Atualizar</button>
+								</form>
+								<a href="/delete/{{ ordem.id }}" class="btn btn-danger btn-sm">Excluir</a>                        
+								
+							</td>
+						</tr>
+						{% endfor %}
+									  
+			
+		</div>
+		
+		</div>
+	</div>
+</div>
+
+  <script src='https://unpkg.com/phosphor-icons'></script><script  src="./script.js"></script>
+
 </body>
 </html>

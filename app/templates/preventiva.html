@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão de Manutenção - Engenharia Clínica</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/os.css') }}">
+</head>
+
+<body>
+<div class="app">
+	<header class="app-header">
+		<div class="app-header-logo">
+			<div class="logo">
+				<span class="logo-icon">
+					<img src="https://img.icons8.com/?size=100&id=40989&format=png&color=FFFFFF" />
+				</span>
+				<h1 class="logo-title">
+					<span>Gestão de</span>
+					<span>Manutenção</span>
+				</h1>
+			</div>
+		</div>
+		<div class="app-header-navigation">
+			<div class="tabs">
+				<li><a href="{{ url_for('main.index') }}">Início</a></li>
+                <li><a href="{{ url_for('main.inventario') }}">Inventário</a></li>
+                <li><a href="{{ url_for('main.os') }}">Ordens de Serviço</a></li>
+                <li><a href="{{ url_for('main.mostrar_preventiva') }}">Preventiva</a></li>
+			</div>
+		</div>
+		<div class="app-header-actions">
+			<button class="user-profile">
+				<span>Nome do Usuário</span>
+				<span>
+					<img src="https://assets.codepen.io/285131/almeria-avatar.jpeg" />
+				</span>
+			</button>
+			<div class="app-header-actions-buttons">
+				<button class="icon-button large">
+					<i class="ph-magnifying-glass"></i>
+				</button>
+				<button class="icon-button large">
+					<i class="ph-bell"></i>
+				</button>
+			</div>
+		</div>
+		<div class="app-header-mobile">
+			<button class="icon-button large">
+				<i class="ph-list"></i>
+			</button>
+		</div>
+
+	</header>
+<body>
+    <div class="container mt-4">
+        <h2>Adicionar Manutenção Preventiva</h2>
+        <form action="/adicionar_manutencao" method="POST">
+            <div class="mb-3">
+                <label for="equipamento" class="form-label">Equipamento</label>
+                <select class="form-select" id="equipamento" name="equipamento_id" required>
+                    {% for equipamento in equipamentos %}
+                        <option value="{{ equipamento.id }}">{{ equipamento.nome }} - {{ equipamento.modelo }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="tipo" class="form-label">Tipo de Manutenção</label>
+                <input type="text" class="form-control" value="Preventiva" disabled>
+                <input type="hidden" name="tipo" value="Preventiva">
+            </div>
+            <div class="mb-3">
+                <label for="descricao" class="form-label">Descrição</label>
+                <textarea class="form-control" id="descricao" name="descricao" rows="3" required></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="data" class="form-label">Data</label>
+                <input type="date" class="form-control" id="data" name="data" required>
+            </div>
+            <div class="mb-3">
+                <label for="tecnico" class="form-label">Técnico Responsável</label>
+                <input type="text" class="form-control" id="tecnico" name="tecnico_responsavel" required>
+            </div>
+            <div class="mb-3">
+                <label for="custo" class="form-label">Custo (opcional)</label>
+                <input type="number" class="form-control" id="custo" name="custo" step="0.01">
+            </div>
+            <button type="submit" class="btn btn-primary">Adicionar Manutenção</button>
+        </form>
+        <h2 class="mt-5">Manutenções Preventivas Adicionadas</h2>
+        <table class="table table-striped mt-3">
+            <thead>
+                <tr>
+                    <th>Equipamento</th>
+                    <th>Tipo</th>
+                    <th>Descrição</th>
+                    <th>Data</th>
+                    <th>Técnico Responsável</th>
+                    <th>Custo</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for manutencao in manutencoes %}
+                <tr>
+                    <td>{{ manutencao.equipamento.nome }}</td>
+                    <td>{{ manutencao.tipo }}</td>
+                    <td>{{ manutencao.descricao }}</td>
+                    <td>{{ manutencao.data.strftime('%d/%m/%Y') }}</td>
+                    <td>{{ manutencao.tecnico_responsavel }}</td>
+                    <td>{{ "R$ {:.2f}".format(manutencao.custo) if manutencao.custo else "-" }}</td>
+                    <td>
+                        <a href="/editar_manutencao/{{ manutencao.id }}" class="btn btn-warning btn-sm">Editar</a>
+                        <a href="/deletar_manutencao/{{ manutencao.id }}" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja excluir esta manutenção?');">Deletar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

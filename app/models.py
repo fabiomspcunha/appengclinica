@@ -1,6 +1,7 @@
 from . import db
 from datetime import datetime
 
+
 ordens_servico = []
 
 # Tabela de Equipamentos
